@@ -1,0 +1,12 @@
+(1) Download Stream Processor v4.3.0. Refer documentation on https://docs.wso2.com/display/SP430/Stream+Processor+Documentation.
+
+(2) Replace the existing siddhi-core_4.2.20.jar in SP_HOME/wso2/lib/plugins directory with the provided siddhi-core_4.2.20.jar in the cloned directory.
+
+(3) The improved Siddhi JAR introduces a new Window named LengthTimeBatch Window. 
+
+(4) Copy "ExpireBasedOnLength&Time.siddhi" to SP_HOME/wso2/editor/deployment/workspace directory and start editor profile.
+
+(5) Test the sample application by simulating few events how limiting event emission based on both event count(length) and time.
+
+
+

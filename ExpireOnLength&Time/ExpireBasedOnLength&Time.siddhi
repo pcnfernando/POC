@@ -1,0 +1,17 @@
+@App:name("ExpireBasedOnLength&Time")
+@App:description("This app demonstractes how lengthTimeBatch can be used to emit event based on length and time.")
+
+-- Please refer to https://docs.wso2.com/display/SP400/Quick+Start+Guide on getting started with SP editor. 
+
+define stream CustomerStream (customerId string, value long);
+
+partition with (customerId of CustomerStream)
+begin
+    from CustomerStream#window.lengthTimeBatch(5 sec, 2)
+    select customerId, value
+    insert into OutputStream;
+    
+    from OutputStream#log("Event Emitted")
+    select *
+    insert into tempLogStream;
+end;
