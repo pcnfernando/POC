@@ -4,9 +4,30 @@
 
 (3) The improved Siddhi JAR introduces a new Window named LengthTimeBatch Window. 
 
-(4) Copy "ExpireBasedOnLength&Time.siddhi" to SP_HOME/wso2/editor/deployment/workspace directory and start editor profile.
+Testing in Editor
 
-(5) Test the sample application by simulating few events how limiting event emission based on both event count(length) and time.
+(1) Copy "ExpireBasedOnLength&Time.siddhi" to SP_HOME/wso2/editor/deployment/workspace directory and start editor profile.
+
+(2) Test the sample application by simulating few events how limiting event emission based on both event count(length) and time.
+
+
+Testing in Worker
+
+(1) Copy "ExpireBasedOnLength&Time.siddhi" to SP_HOME/wso2/worker/deployment/siddhi-files directory and start worker profile.
+
+(2) Test the sample application by sending few events how limiting event emission based on both event count(length) and time. You can use the following command to send events to the CustomerStream.
+ 
+curl -X POST \
+  http://localhost:9055/endpoints \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/xml' \
+  -H 'postman-token: 776c139c-442c-9c74-bd1c-75c398804dd8' \
+  -d '<events>
+<event>
+<customerId>abc</customerId>
+<value>123</value>
+</event>
+</events>'
 
 
 

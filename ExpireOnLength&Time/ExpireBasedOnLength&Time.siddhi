@@ -3,15 +3,16 @@
 
 -- Please refer to https://docs.wso2.com/display/SP400/Quick+Start+Guide on getting started with SP editor. 
 
+@source(type='http', receiver.url='http://localhost:9055/endpoints', @map(type='xml'))
 define stream CustomerStream (customerId string, value long);
 
 partition with (customerId of CustomerStream)
 begin
     from CustomerStream#window.lengthTimeBatch(5 sec, 2)
     select customerId, value
-    insert into OutputStream;
+    insert into #OutputStream;
     
-    from OutputStream#log("Event Emitted")
+    from #OutputStream#log("Event Emitted")
     select *
     insert into tempLogStream;
 end;
